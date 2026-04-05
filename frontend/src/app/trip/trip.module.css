@@ -1,0 +1,167 @@
+/* Trip wizard page styles */
+
+.page {
+  min-height: 100vh;
+  background: #0a0f1e;
+  color: white;
+  position: relative;
+}
+
+/* Background blobs */
+.blobBlue {
+  position: fixed;
+  top: -10rem;
+  left: -10rem;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.12);
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blobViolet {
+  position: fixed;
+  bottom: -5rem;
+  right: -5rem;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.1);
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Step indicator */
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.stepItem:last-child { flex: none; }
+
+.stepDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.stepDot.active {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2), 0 4px 12px rgba(59, 130, 246, 0.35);
+  color: white;
+}
+
+.stepDot.done {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  color: white;
+}
+
+.stepDot.inactive {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.stepLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-left: 8px;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+.stepLabel.active   { color: white; }
+.stepLabel.done     { color: #93c5fd; }
+.stepLabel.inactive { color: rgba(255,255,255,0.3); }
+
+.stepConnector {
+  flex: 1;
+  height: 1px;
+  margin: 0 12px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+}
+
+/* Form sections */
+.formSection {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease;
+}
+.formSection:hover { border-color: rgba(255,255,255,0.11); }
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* Animated submit button */
+.submitBtn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 8px 24px rgba(59,130,246,0.25);
+}
+.submitBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.submitBtn:hover:not(:disabled)::before { opacity: 1; }
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(59,130,246,0.4);
+}
+.submitBtn:active:not(:disabled) { transform: translateY(0); }
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Generating overlay pulse */
+@keyframes generating-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+.generatingText {
+  animation: generating-pulse 1.5s ease-in-out infinite;
+}
